@@ -1,12 +1,13 @@
 import { addnewProduct, getProducts, getProductWithID, updateProduct, deleteProduct } from '../controllers/controllers';
 
-export const routes = (app) => {
-    app.route('/products');
-    app.get(getProducts);
-    app.route('/products/:ProductID');
-    app.get(getProductWithID);
-    app.delete(deleteProduct);
+const routes = (app) => {
+    app.route('/products')
+        .get(getProducts)
+        .post(addnewProduct);
+    app.route('/products/:ProductID')
+        .get(getProductWithID)
+        .put(updateProduct)
+        .delete(deleteProduct);
 }
 
-routes.post(addnewProduct);
-routes.put(updateProduct);
+export default routes;
